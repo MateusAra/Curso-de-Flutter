@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
       super.initState();
 
       Future.delayed(
-        const Duration(milliseconds: 300),
+        const Duration(seconds: 1),
         (){
           setState(() {
             textAnimated = true;

@@ -8,12 +8,15 @@ class CustomEdit extends StatelessWidget {
   final String hintText;
   final IconData icon; 
   final bool isPassword;
+  final FormFieldValidator<String>? validator;
+
 
   const CustomEdit({
     super.key,
     required this.controller,
     required this.hintText,
     required this.icon,
+    required this.validator,
     this.isPassword = false,
   });
 
