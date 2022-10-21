@@ -9,8 +9,8 @@ class CustomLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
         'assets/LearningLab Lado Oficial.png',
-        height: 200,
-        width: 200,
+        height: 80,
+        width: 100,
       );
   }
 }

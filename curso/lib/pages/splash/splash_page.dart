@@ -14,6 +14,8 @@ class SplashPage extends StatefulWidget{
 class _SplashPageState extends State<SplashPage> {
   bool textAnimated = false;
   bool logoAnimated = false;
+
+  
   @override
   void initState(){
       super.initState();

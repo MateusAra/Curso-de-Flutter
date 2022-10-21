@@ -1,8 +1,11 @@
+import 'package:curso/db/database.dart';
+import 'package:curso/models/usuario.dart';
 import 'package:curso/widgets/custom_button.dart';
 import 'package:curso/widgets/custom_edit.dart';
 import 'package:curso/widgets/custom_logo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:curso/widgets/routes.dart';
 
 
 
@@ -31,15 +34,39 @@ class _LoginPageState extends State<LoginPage> {
     Future.delayed(
       const Duration(seconds: 2),
       (){
-        //login
+        if(_formKey.currentState!.validate()){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Validando usuário....'),
+                backgroundColor: Colors.black,
+              )
+        );
+
+        Usuario? usuario = Database().login(
+          textUsuario.text.trim(), 
+          textSenha.text.trim(),
+        );
+
+        if(usuario == null){
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Usuário não encontrado'),
+              backgroundColor: Colors.red,
+          )
+        );
+        }
+        else{
+          Database().usuarioLogado = usuario;
+          Navigator.of(context).pushReplacementNamed(Routes.HOME);
+        }
+        }
+      //login
+        setState(() {
+          buttonClick = false;
+        });
       }
     );
-
-    setState(() {
-      buttonClick = false;
-    });
-
-
   }
 
   @override
@@ -50,8 +77,9 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: ListView(
             children: [
+              const SizedBox(height: 50),
               const CustomLogo(),
               const SizedBox(height: 50),
               CustomEdit(
@@ -59,13 +87,10 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: 'Informe o seu email', 
                 icon: Icons.person,
                 validator: (value){
-                  if(value == null){
-                    return "Informe o email";
-                  }
-                  if(value.trim() == ""){
-                    return "Informe o email";
-                  }
-                  return null;
+                if(value == null || value.trim() == ""){
+                  return "Informe o email";
+                }
+                return null;
                 } ,
               ),
               const SizedBox(height: 15),
