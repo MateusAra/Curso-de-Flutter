@@ -27,14 +27,9 @@ class Database{
       descricao: "Teremos aula de flutter",
     ),
     Lembrete(
-      codigo: 1,
+      codigo: 2,
       titulo: "Sextouu",
       descricao: "Hoje é sexta!!",
-    ),
-    Lembrete(
-      codigo: 1,
-      titulo: "Acaba pelo amor de Deus",
-      descricao: "é hoje"
     )
   ];
 

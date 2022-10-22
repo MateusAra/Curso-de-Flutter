@@ -1,11 +1,10 @@
-import 'package:curso/models/lembretes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/material.dart';
-import 'package:curso/db/database.dart';
 import 'package:curso/models/lembretes.dart';
-import 'package:curso/models/usuario.dart';
 
+import '../../db/database.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,61 +19,89 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Text('Início'),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Olá, ${Database().usuarioLogado?.nome ?? ""}'),
+            Text(
+              'Olá, ${Database().usuarioLogado?.nome ?? ""}',
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 15),
             Text(
-              'Você tem ${Database().lembretes.length} lembretes',
+              'Você tem ${Database().lembretes.length} lembretes:',
               style: const TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-          )
-        ),
-        const SizedBox(height: 15),
-        Expanded(
-          child: ListView.builder(
-            itemCount: Database().lembretes.length,
-            itemBuilder: (context, index){
+                color: Colors.black,
+                fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 15),
+            Expanded(
+              child: ListView.builder(
+                itemCount: Database().lembretes.length,
+                itemBuilder: (context, index) {
+                  var item = Database().lembretes.elementAt(index);
 
-              var item = Database().lembretes.elementAt(index);
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: Container(
-                  height: 80,
-                  color: Color.fromARGB(255, 238, 238, 238),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 20),
-                      const Icon(Icons.calendar_month),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(item.titulo),
-                          Text(item.descricao)
-                        ]
-                      )
-                      )
-                    ]
-                  )
-                )
-              );
-            }
-          )
-        )
-        ],
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Material(
+                      color: Colors.grey.shade100,
+                      child: InkWell(
+                        onTap: () {},
+                        child: Ink(
+                          height: 80,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const SizedBox(width: 20),
+                              const Icon(Icons.calendar_month),
+                              const SizedBox(width: 20),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      item.titulo,
+                                      style: const TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      item.descricao,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {});
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
