@@ -1,4 +1,5 @@
 import 'package:curso/models/usuario.dart';
+import 'package:curso/models/lembretes.dart';
 
 class Database{
   //Singleton
@@ -18,6 +19,32 @@ class Database{
       senha: "123"
     ),
   ];
+
+  List<Lembrete> lembretes = [
+    Lembrete(
+      codigo: 1,
+      titulo: "Flutterama",
+      descricao: "Teremos aula de flutter",
+    ),
+    Lembrete(
+      codigo: 1,
+      titulo: "Sextouu",
+      descricao: "Hoje é sexta!!",
+    ),
+    Lembrete(
+      codigo: 1,
+      titulo: "Acaba pelo amor de Deus",
+      descricao: "é hoje"
+    )
+  ];
+
+  void addLembrete( Lembrete lembrete){
+    lembretes.add(lembrete);
+  }
+
+  void removeLembrete(int index){
+    lembretes.removeAt(index);
+  }
 
   Usuario? login(String email, String senha){
     for(var usuario in usuarios){
