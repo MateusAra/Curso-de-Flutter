@@ -100,11 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                 icon: Icons.password,
                 isPassword: true,
                 validator: (value){
-                  if(value == null){
-                    return "Informe o senha";
-                  }
-                  if(value.trim() == ""){
-                    return "Informe o senha";
+                  if(value == null ||value.trim() == ""){
+                    return "Informe a senha";
                   }
                   return null;
                 } 

@@ -15,7 +15,7 @@ class Database{
     Usuario(
       codigo: 1, 
       nome: "Mateus", 
-      email: "mateus@gmail", 
+      email: "mateus", 
       senha: "123"
     ),
   ];

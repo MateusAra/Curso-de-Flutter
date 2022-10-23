@@ -25,6 +25,7 @@ class CustomEdit extends StatelessWidget {
     return TextFormField(
             controller: controller,
             obscureText: isPassword,
+            validator: validator,
             decoration: InputDecoration(
               hintText: hintText,
               hintStyle: const TextStyle(

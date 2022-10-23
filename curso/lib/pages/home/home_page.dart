@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:curso/models/lembretes.dart';
+import 'package:curso/widgets/routes.dart';
 
 import '../../db/database.dart';
 
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 15),
             Text(
-              'Você tem ${Database().lembretes.length} lembretes:',
+              'Você tem ${Database().lembretes.length} lembretes!',
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 15,
@@ -97,7 +98,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
+          await Navigator.of(context).pushNamed(
+            Routes.LEMBRETES,
+          );
+
           setState(() {});
         },
         child: const Icon(Icons.add),
