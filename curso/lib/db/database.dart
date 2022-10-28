@@ -20,18 +20,7 @@ class Database{
     ),
   ];
 
-  List<Lembrete> lembretes = [
-    Lembrete(
-      codigo: 1,
-      titulo: "Flutterama",
-      descricao: "Teremos aula de flutter",
-    ),
-    Lembrete(
-      codigo: 2,
-      titulo: "Sextouu",
-      descricao: "Hoje é sexta!!",
-    )
-  ];
+  List<Lembrete> lembretes = [];
 
   void addLembrete( Lembrete lembrete){
     lembretes.add(lembrete);

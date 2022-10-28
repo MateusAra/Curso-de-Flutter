@@ -6,11 +6,12 @@ class CustomButton extends StatelessWidget {
 
   final bool loading;
 
-  const CustomButton(
-      {super.key,
+  const CustomButton({
+      super.key,
       required this.caption,
       required this.onTap,
-      this.loading = false});
+      this.loading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,8 @@ class CustomButton extends StatelessWidget {
                 ? const CircularProgressIndicator(
                     color: Colors.white,
                   )
-                : Text(caption,
+                : Text(
+                  caption,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 19,
